@@ -1,4 +1,5 @@
 from typing import Union
+from fake_useragent import UserAgent
 
 import requests
 import xmltodict
@@ -131,7 +132,7 @@ class OGameAPI:
                 domain=server_data_dict['domain'],
                 version=server_data_dict['version'],
                 speed=int(server_data_dict['speed']),
-                fleet_speed=int(server_data_dict['speedFleet']),
+                fleet_speed=0, # int(server_data_dict['speedFleet']),
                 galaxies=int(server_data_dict['galaxies']),
                 systems=int(server_data_dict['systems']),
                 acs=str2bool(server_data_dict['acs']),
@@ -203,7 +204,10 @@ class OGameAPI:
                 'server_data': server_data}
 
     def _get_endpoint(self, endpoint, **kwargs):
-        response = requests.get(self._api_url(endpoint), timeout=self.request_timeout, **kwargs)
+        ua = UserAgent()
+        headers = {'User-Agent': ua.chrome }
+
+        response = requests.get(self._api_url(endpoint), timeout=self.request_timeout, headers=headers, **kwargs)
         endpoint_data = xmltodict.parse(response.content)[endpoint]
         return endpoint_data
 
