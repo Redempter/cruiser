@@ -132,7 +132,7 @@ class OGameAPI:
                 domain=server_data_dict['domain'],
                 version=server_data_dict['version'],
                 speed=int(server_data_dict['speed']),
-                fleet_speed=0, # int(server_data_dict['speedFleet']),
+                fleet_speed=int(server_data_dict['speedFleetHolding']),
                 galaxies=int(server_data_dict['galaxies']),
                 systems=int(server_data_dict['systems']),
                 acs=str2bool(server_data_dict['acs']),

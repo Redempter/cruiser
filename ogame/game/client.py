@@ -505,7 +505,7 @@ class OGame:
                            planet: Union[Planet, int],
                            delay: int = None) -> FleetDispatch:
         fleet_dispatch_soup = self._get_fleet_dispatch(planet, delay=delay)
-        token = find_first_between(str(fleet_dispatch_soup), left='fleetSendingToken = "', right='"')
+        token = find_first_between(str(fleet_dispatch_soup), left='token = "', right='"')
         timestamp = int(fleet_dispatch_soup.find('meta', {'name': 'ogame-timestamp'})['content'])
         slot_elements = fleet_dispatch_soup.find(id='slots').findAll('div', recursive=False)
         used_fleet_slots, max_fleet_slots = extract_numbers(slot_elements[0].text)

@@ -1,6 +1,7 @@
 # App 
 .idea
 config.yaml
+configBACKUP.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
